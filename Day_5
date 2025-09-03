@@ -1,0 +1,72 @@
+export default function ProductCard({ product }) {
+  return (
+    <div className="bg-white shadow-md rounded-2xl p-4 flex flex-col items-center hover:shadow-xl transition duration-300">
+      <img
+        src={product.image}
+        alt={product.name}
+        className="w-full h-40 object-cover rounded-lg mb-4"
+      />
+      <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
+      <p className="text-gray-600 mb-3">{product.price}</p>
+      <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+        🛒 Add to Cart
+      </button>
+    </div>
+  );
+}
+import React from "react";
+import ProductCard from "./ProductCard";
+
+// Dummy product data
+const products = [
+  {
+    id: 1,
+    name: "Wireless Headphones",
+    price: "$59.99",
+    image: "https://via.placeholder.com/200x150.png?text=Headphones",
+  },
+  {
+    id: 2,
+    name: "Smart Watch",
+    price: "$129.99",
+    image: "https://via.placeholder.com/200x150.png?text=Smart+Watch",
+  },
+  {
+    id: 3,
+    name: "Gaming Mouse",
+    price: "$39.99",
+    image: "https://via.placeholder.com/200x150.png?text=Gaming+Mouse",
+  },
+  {
+    id: 4,
+    name: "Mechanical Keyboard",
+    price: "$89.99",
+    image: "https://via.placeholder.com/200x150.png?text=Keyboard",
+  },
+];
+
+export default function ProductCardList() {
+  return (
+    <div className="p-6">
+      <h2 className="text-2xl font-bold mb-6 text-center">🛍️ Product List</h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+}
+import React from "react";
+import ProductCardList from "./components/ProductCardList";
+
+function App() {
+  return (
+    <div className="App bg-gray-100 min-h-screen">
+      <ProductCardList />
+    </div>
+  );
+}
+
+export default App;
